@@ -3,6 +3,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
+class PublisherManager(models.Manager):
+    def get_queryset(self):
+        return super(PublisherManager, self).get_queryset()\
+            .filter(status='publicada')
+
+
 class Post(models.Model):
     STATUS = (
         ('rascunho', 'Rascunho'),
@@ -18,6 +24,9 @@ class Post(models.Model):
     status = models.CharField(
         max_length=10, choices=STATUS, default='rascunho'
         )
+
+    objects = models.Manager()
+    published = PublisherManager()
 
     def __str__(self):
         return f"{self.title}"
