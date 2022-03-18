@@ -15,7 +15,9 @@ class Post(models.Model):
     published = models.DateField(default=timezone.now)
     create_at = models.DateField(auto_now_add=True)
     changed_at = models.DateField(auto_now=True)
-    status = models.CharField(max_length=10, choices=STATUS, default='rascunho')
+    status = models.CharField(
+        max_length=10, choices=STATUS, default='rascunho'
+        )
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
