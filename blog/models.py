@@ -3,10 +3,10 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-class PublisherManager(models.Manager):
-    def get_queryset(self):
-        return super(PublisherManager, self).get_queryset()\
-            .filter(status='publicada')
+# class PublisherManager(models.Manager):
+#     def get_queryset(self):
+#         return super(PublisherManager, self).get_queryset()\
+#             .filter(status='publicada')
 
 
 class Post(models.Model):
@@ -25,8 +25,8 @@ class Post(models.Model):
         max_length=10, choices=STATUS, default='rascunho'
         )
 
-    objects = models.Manager()
-    published = PublisherManager()
+    # objects = models.Manager()
+    # published = PublisherManager()
 
     def __str__(self):
         return f"{self.title}"
