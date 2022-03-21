@@ -14,12 +14,17 @@ header {
 
 .title {
   color: red;
-  size: 3em;
+  font-size: 2.3em;
 }
 
 .title_a {
   color: red;
   text-decoration: none;
+}
+
+.subtitle {
+  color: red;
+  font-size: 1.5em;
 }
 
 .post-entry {
