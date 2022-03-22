@@ -25,3 +25,4 @@ class BlogUpdateView(UpdateView):
     model = Post
     template_name = 'blog/post_edit.html'
     fields = ('title', 'content')
+    context_object_name = 'post'

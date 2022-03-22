@@ -28,8 +28,11 @@ class Post(models.Model):
 
     # objects = models.Manager()
     # published = PublisherManager()
-    def get_absolute_url(self):
+    def get_absolute_url_detail(self):
         return reverse('post_detail', args=[self.slug])
+
+    def get_absolute_url_edit(self):
+        return reverse('post_edit', args=[self.slug])
 
     def __str__(self):
         return f"{self.title}"
