@@ -1,3 +1,5 @@
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Post
@@ -14,21 +16,30 @@ class BlogDetailView(DetailView):
     context_object_name = 'post'
 
 
-class BlogCreateView(CreateView):
+class BlogCreateView(SuccessMessageMixin, CreateView):
     model = Post
     template_name = 'blog/post_new.html'
-    fields = ('author', 'title', 'content')
+    fields = ('author', 'title', 'slug', 'content')
+    success_url = reverse_lazy('home')
+    success_message = '"%(title)s" criado com sucesso!'
 
 
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(SuccessMessageMixin, UpdateView):
     model = Post
     template_name = 'blog/post_edit.html'
     fields = ('title', 'content')
     context_object_name = 'post'
+    success_message = '"%(title)s" alterado com sucesso!'
 
 
-class BlogDeleteView(DeleteView):
+class BlogDeleteView(SuccessMessageMixin, DeleteView):
     model = Post
     template_name = 'blog/post_delete.html'
-    context_object_name = 'post'
-    success_url = '/'
+    success_url = reverse_lazy('home')
+    success_message = '"%(calculated_field)s" deletado com sucesso!'
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            calculated_field=self.object.title,
+        )
