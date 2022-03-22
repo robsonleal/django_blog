@@ -20,6 +20,11 @@
             <h2 class="subtitle"><a href="{% url 'post_new' %}" class="title_a">+ Nova Postagem</a></h2>
         </div>
     </header>
+    {% if user.is_authenticated %}
+        <p>Olá {{user.username}}! <a href="{% url 'logout' %}">Sair</a></p>
+    {% else %}
+        <p>Você não está logado! <a href="{% url 'login' %}">Click aqui</a> para fazer login!</p>
+    {% endif %}
     <div class="container">
         {% if messages %}
         <ul class="messages">

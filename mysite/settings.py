@@ -106,6 +106,10 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
+# Autentications
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
 # Media files
 MEDIA_URL = 'media/'
 MEDIA_ROOT = 'media'
