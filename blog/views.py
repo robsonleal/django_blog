@@ -19,7 +19,7 @@ class BlogDetailView(DetailView):
 class BlogCreateView(SuccessMessageMixin, CreateView):
     model = Post
     template_name = 'blog/post_new.html'
-    fields = ('author', 'title', 'slug', 'content')
+    fields = ('author', 'title', 'content')
     success_url = reverse_lazy('home')
     success_message = '"%(title)s" criado com sucesso!'
 
