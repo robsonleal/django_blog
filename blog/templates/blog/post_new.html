@@ -2,33 +2,17 @@
 
 {% block title %} Nova Postagem {% endblock title %}
 
-{% block content %}
-<!-- Page Header-->
-<header class="masthead" style="background-image: url('assets/img/contact-bg.jpg')">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="page-heading">
-                    <h1>Nova Postagem</h1>
-                    <span class="subheading">Escreva a sua nova postagem!</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+{% block header-title %}
+<div class="page-heading">
+    <h1>Nova Postagem</h1>
+    <span class="subheading">{{user.first_name}} escreva a sua nova postagem ...</span>
+</div>
+{% endblock header-title %}
 
-<!-- Main Content-->
-<main class="mb-4">
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <form method="post" class="centralizar">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="btn btn-success" type="submit">Enviar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</main>
+{% block content %}
+<form method="post" class="centralizar">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success" type="submit">Enviar</button>
+</form>
 {% endblock content %}
