@@ -4,12 +4,16 @@ from django.contrib.auth.models import User
 
 
 class UserCreationFormWithEmail(UserCreationForm):
-    email = forms.EmailField(required=True, help_text='Obrigatório.\
-        Digite seu e-mail válido.')
+    email = forms.EmailField(required=True)
+    username = forms.CharField(
+        required=True,
+        label='Nome de usuário',
+        help_text='Este valor pode conter apenas letras, números e os\
+            seguintes caracteres @/./+/-/_')
 
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('first_name', 'last_name', 'username', 'email')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

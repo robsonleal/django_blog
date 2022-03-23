@@ -3,10 +3,32 @@
 {% block title %} Cadastrar {% endblock title %}
 
 {% block content %}
-<h2 class="subtitle">Cadastrar novo usuário:</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Cadastre-se" />
-</form>
-{% endblock %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('assets/img/contact-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Cadastro</h1>
+                    <span class="subheading">Faça seu Cadastro!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <form method="post" class="centralizar">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="centraliza" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

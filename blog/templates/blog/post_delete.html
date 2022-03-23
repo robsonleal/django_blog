@@ -3,10 +3,32 @@
 {% block title %} Deletar Postagem {% endblock title %}
 
 {% block content %}
-<h1 class="subtitle">Deletar Postagem</h1>
-<form action="" method="post">
-    {% csrf_token %}
-    <p>Deseja realmente excluir o post: "{{ post.title }}"?</p>
-    <input type="submit" value="Confirmar">
-</form>
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('assets/img/contact-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Deletar Postagem</h1>
+                    <span class="subheading">{{ user.first_name }} você realmente deseja excluir sua postagem?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <form class="centralizar" method="post">
+                    {% csrf_token %}
+                    <p>Deseja realmente excluir o post: "{{ post.title }}"?</p>
+                    <input class="btn btn-danger" type="submit" value="Quero excluir">
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock content %}
