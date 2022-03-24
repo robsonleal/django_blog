@@ -6,8 +6,8 @@
 <h1>{{ post.title }}</h1>
 <h2 class="subheading">{{ post.subtitle }}</h2>
 <span class="meta">
-    Postado por
-    <a href="#!">{{ user.get_full_name }}</a>
+    Criado por
+    <a href="#!">{{ post.author.get_full_name }}</a>
     em {{ post.published }}
 </span>
 {% endblock header-title %}

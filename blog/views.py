@@ -24,6 +24,12 @@ class BlogCreateView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('home')
     success_message = '"%(title)s" criado com sucesso!'
 
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.author = self.request.user
+        obj.save()
+        return super().form_valid(form)
+
 
 class BlogUpdateView(SuccessMessageMixin, UpdateView):
     model = Post
@@ -31,6 +37,12 @@ class BlogUpdateView(SuccessMessageMixin, UpdateView):
     template_name = 'blog/post_edit.html'
     context_object_name = 'post'
     success_message = '"%(title)s" alterado com sucesso!'
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.author = self.request.user
+        obj.save()
+        return super().form_valid(form)
 
 
 class BlogDeleteView(SuccessMessageMixin, DeleteView):
