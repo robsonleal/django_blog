@@ -19,12 +19,15 @@
 <div class="post-preview">
     <a href="{{ post.get_absolute_url }}">
         <h2 class="post-title">{{ post.title }}</h2>
-        <h3 class="post-subtitle">{{ post.content }}</h3>
+        <h3 class="post-subtitle">{{ post.subtitle }}</h3>
     </a>
     <p class="post-meta">
         Postado por
-        <a href="#">{{ post.author }}</a>
+        <a href="#">{{ user.get_full_name }}</a>
         em {{ post.published }}
+    </p>
+    <p>
+        {{ post.content|safe|striptags|truncatechars:'255' }}
     </p>
 </div>
 

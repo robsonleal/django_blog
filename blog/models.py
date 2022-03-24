@@ -5,12 +5,25 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from ckeditor.fields import RichTextField
 
 
 # class PublisherManager(models.Manager):
 #     def get_queryset(self):
 #         return super(PublisherManager, self).get_queryset()\
 #             .filter(status='publicada')
+# Category.post_set.all()
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    published = models.DateTimeField(default=timezone.now)
+    create_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+
+    def __str__(self):
+        return self.name
 
 
 class Post(models.Model):
@@ -18,16 +31,24 @@ class Post(models.Model):
         ('rascunho', 'Rascunho'),
         ('publicado', 'Publicado')
     )
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, verbose_name='Título')
+    subtitle = models.CharField(max_length=255, verbose_name='Subtítulo')
     slug = models.SlugField(max_length=255, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
-    published = models.DateField(default=timezone.now)
-    create_at = models.DateField(auto_now_add=True)
-    changed_at = models.DateField(auto_now=True)
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='Autor')
+    category = models.ManyToManyField(Category, verbose_name='Categoria')
+    image = models.ImageField(
+        upload_to='blog', verbose_name='Imagem', blank=True, null=True)
+    content = RichTextField(verbose_name='Conteúdo')
+    published = models.DateTimeField(default=timezone.now)
+    create_at = models.DateTimeField(auto_now_add=True)
+    changed_at = models.DateTimeField(auto_now=True)
     status = models.CharField(
-        max_length=10, choices=STATUS, default='rascunho'
-        )
+        max_length=10, choices=STATUS, default='rascunho')
+
+    class Meta:
+        verbose_name = 'Postagem'
+        verbose_name_plural = 'Postagens'
 
     # objects = models.Manager()
     # published = PublisherManager()

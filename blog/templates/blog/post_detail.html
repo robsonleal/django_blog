@@ -4,17 +4,17 @@
 
 {% block header-title %}
 <h1>{{ post.title }}</h1>
-<h2 class="subheading">{{ post.content }}</h2>
+<h2 class="subheading">{{ post.subtitle }}</h2>
 <span class="meta">
     Postado por
-    <a href="#!">{{ post.author }}</a>
+    <a href="#!">{{ user.get_full_name }}</a>
     em {{ post.published }}
 </span>
 {% endblock header-title %}
 
 {% block content %}
 <p>
-    {{ post.content}}
+    {{ post.content|safe }}
 </p>
 <hr class="my-4"/>
 <div class="d-grid gap-2 d-md-flex justify-content-center">

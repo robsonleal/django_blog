@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Post
+from .forms import PostForm
 
 
 class BlogListView(ListView):
@@ -18,16 +19,16 @@ class BlogDetailView(DetailView):
 
 class BlogCreateView(SuccessMessageMixin, CreateView):
     model = Post
+    form_class = PostForm
     template_name = 'blog/post_new.html'
-    fields = ('author', 'title', 'content')
     success_url = reverse_lazy('home')
     success_message = '"%(title)s" criado com sucesso!'
 
 
 class BlogUpdateView(SuccessMessageMixin, UpdateView):
     model = Post
+    form_class = PostForm
     template_name = 'blog/post_edit.html'
-    fields = ('title', 'content')
     context_object_name = 'post'
     success_message = '"%(title)s" alterado com sucesso!'
 

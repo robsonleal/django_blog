@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 django-bootstrap-form = "*"
+pillow = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 autopep8 = "*"
