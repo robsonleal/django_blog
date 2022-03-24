@@ -17,6 +17,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'author', 'published', 'status')
     list_display_links = ('id', 'title')
     list_filter = ('author', 'status')
+    readonly_fields = ('view_image',)
     raw_id_fields = ('author',)
     date_hierarchy = 'published'
     prepopulated_fields = {'slug': ('title',)}

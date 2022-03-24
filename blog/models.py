@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.html import mark_safe
 from ckeditor.fields import RichTextField
 
 
@@ -37,14 +38,14 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name='Autor')
     category = models.ManyToManyField(Category, verbose_name='Categoria')
-    image = models.ImageField(
-        upload_to='blog', verbose_name='Imagem', blank=True, null=True)
     content = RichTextField(verbose_name='Conteúdo')
     published = models.DateTimeField(default=timezone.now)
     create_at = models.DateTimeField(auto_now_add=True)
     changed_at = models.DateTimeField(auto_now=True)
     status = models.CharField(
         max_length=10, choices=STATUS, default='rascunho')
+    image = models.ImageField(
+        upload_to='blog', verbose_name='Imagem', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Postagem'
@@ -60,6 +61,11 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+    def view_image(self):
+        return mark_safe('<img src="%s" width="400px"/>' % self.image.url)
+    view_image.short_description = 'Visualização da imagem'
+    view_image.allow_tags = True
 
 
 @receiver(post_save, sender=Post)
