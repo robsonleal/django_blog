@@ -10,7 +10,9 @@
 {% block content %}
 <form class="centralizar" method="post">
     {% csrf_token %}
-    <p>Deseja realmente excluir o post: "{{ post.title }}"?</p>
-    <input class="btn btn-danger" type="submit" value="Quero excluir">
+    <p>Deseja realmente excluir o post: <strong>"{{ post.title }}"</strong></p>
+    <div class="d-grid gap-2 col-6 mx-auto mt-4">
+        <input class="btn btn-outline-danger text-uppercase" type="submit" value="Quero excluir!">
+    </div>
 </form>
 {% endblock content %}

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load bootstrap %}
+
 {% block title %} Login {% endblock title %}
 
 {% block header-title %}
@@ -10,9 +12,11 @@
 {% endblock header-title %}
 
 {% block content %}
-<form method="post" class="centralizar">
+<form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button class="centraliza btn btn-success" type="submit">Login</button>
+    {{ form|bootstrap }}
+    <div class="d-grid gap-2 col-6 mx-auto mt-4">
+        <button class="btn btn-outline-dark text-uppercase" type="submit">Login</button>
+    </div>
 </form>
 {% endblock content %}
