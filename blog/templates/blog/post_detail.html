@@ -16,9 +16,11 @@
 <p>
     {{ post.content|safe }}
 </p>
+{% if user == post.author %}
 <hr class="my-4"/>
 <div class="d-grid gap-2 d-md-flex justify-content-center">
     <a class="btn btn-outline-dark text-uppercase" href="{{ post.get_absolute_url_edit }}">Editar Postagem</a>
     <a class="btn btn-outline-danger text-uppercase" href="{% url 'post_del' post.slug %}">Excluir Postagem</a>
 </div>
+{% endif %}
 {% endblock content %}
