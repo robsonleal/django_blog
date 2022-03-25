@@ -3,6 +3,10 @@
 
 {% block title %} Home {% endblock title %}
 
+{% block header-image %}
+style="background-image:url('{% static "/assets/img/home-bg.jpg" %}')"
+{% endblock header-image %}
+
 {% block header-title %}
 {% if user.is_authenticated %}
 <h1>Olá {{ user.get_full_name }}!</h1>

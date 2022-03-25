@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% load bootstrap %}
 
 {% block title %} Nova Postagem {% endblock title %}
 
+{% block header-image %}
+style="background-image:url('{% static "/assets/img/create-post-bg.jpg" %}')"
+{% endblock header-image %}
+
 {% block header-title %}
 <div class="page-heading">
     <h1>Nova Postagem</h1>
     <span class="subheading">{{user.first_name}} escreva a sua nova postagem ...</span>
+    <p>⇩⇩⇩</p>
 </div>
 {% endblock header-title %}
 

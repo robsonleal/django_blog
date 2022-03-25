@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Deletar Postagem {% endblock title %}
+
+{% block header-image %}
+    {% if not post.image %}
+    style="background-image:url('{% static "/assets/img/home-bg.jpg" %}')"
+    {% else %}
+    style="background-image:url('{{ post.image.url }}')"
+    {% endif %}
+{% endblock header-image %}
 
 {% block header-title %}
     <h1>Deletar Postagem</h1>
     <span class="subheading">{{ user.first_name }} você realmente deseja excluir sua postagem?</span>
+    <p>⇩⇩⇩</p>
 {% endblock header-title %}
 
 {% block content %}
