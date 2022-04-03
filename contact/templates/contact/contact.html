@@ -32,9 +32,12 @@ style="background-image:url('{% static "/assets/img/contact-bg.jpg" %}')"
             <button class="btn btn-outline-dark text-uppercase" id="submitButton" type="submit">Send</button>
         </div>
     </form>
+    <div class="text-center mt-3 alert alert-{{alert.tag}}" role="alert">
+        {{alert.message}}
+    </div>
     {% else %}
-    <div class="text-center alert alert-success" role="alert">
-        Mensagem enviada com sucesso!
+    <div class="text-center alert alert-{{alert.tag}}" role="alert">
+        {{alert.message}}
     </div>
     {% endif %}
 </div>
